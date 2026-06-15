@@ -19,13 +19,20 @@ import AdminUserListScreen from "./components/screens/AdminUserListScreen";
 import AdminUserEditScreen from "./components/screens/AdminUserEditScreen";
 import ProfileScreen from "./components/screens/ProfileScreen";
 import   "../src/App.css"
+import { alignPropType } from "react-bootstrap/esm/types";
 
 export default function App() {
   return (
     <>
       <BrowserRouter>
+      <div style={{
+      minHeight: "100vh",
+      display: "flex",
+      flexDirection: "column",
+    }}
+  >
         <Header />
-        <main>
+        <main style={{flex:1}}>
           <Container>
             <Routes>
               <Route path="/" element={<Home />} />
@@ -68,8 +75,9 @@ export default function App() {
               <Route path="/profile" element={<ProfileScreen/>}></Route>
             </Routes>
           </Container>
-        </main>
-        <Footer />
+        </main >
+        <Footer  />
+        </div>
       </BrowserRouter>
     </>
   );

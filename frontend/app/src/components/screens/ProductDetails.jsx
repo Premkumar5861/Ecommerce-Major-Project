@@ -75,7 +75,7 @@ function ProductDetails({ params }) {
                   <p>Description : {product.description} </p>
                 </ListGroup.Item>
                 <ListGroup.Item>
-                  <h3>Prize : {product.price}</h3>
+                  <h3>Prize : ₹{product.price}</h3>
                 </ListGroup.Item>
               </ListGroup>
             </Col>

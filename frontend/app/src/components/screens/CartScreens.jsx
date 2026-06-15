@@ -94,7 +94,7 @@ function CartScreens({ params }) {
                 <hr style={{ color: "black", border: "2px solid" }} />
                 <strong>
                   {" "}
-                  Rs.{" "}
+                  ₹{" "}
                   {cartItems
                     .reduce((acc, item) => acc + item.qty * item.price, 0)
                     .toFixed(2)}

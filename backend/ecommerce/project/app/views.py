@@ -83,7 +83,7 @@ def registerUser(request):
     data = request.data
 
     try:
-        user= User.objects.create(first_name=data["fname"],last_name=data['lname'], username = data['email'],email = data['email'], password= make_password(data['password']),is_active=False)
+        user= User.objects.create(first_name=data["fname"],last_name=data['lname'], username = data['email'],email = data['email'], password= make_password(data['password']),is_active=True)
 
         email_subject = "Activate Your Account"
         message = render_to_string(

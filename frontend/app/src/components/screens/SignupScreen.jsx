@@ -89,7 +89,8 @@ function SignupScreen() {
         break;
       case "password":
         const minLength = 6;
-        const passwordRegex = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[_$@*!.,])[A-Za-z0-9_$@*!.,]{6,}$/;
+        const passwordRegex =
+          /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[_$@*!.,])[A-Za-z0-9_$@*!.,]{6,}$/;
         if (value.length < minLength || !passwordRegex.test(value)) {
           errorMessage =
             "Password must include at least: 1 number, 1 lowercase letter, 1 special character (_$@*!.,), and minimum 6 characters.";
@@ -142,15 +143,13 @@ function SignupScreen() {
       ),
     );
     clearForm();
-    
   };
 
   useEffect(() => {
-    if (userInfo) {
+    if (userInfo?.details) {
       setMessage(userInfo["details"]);
-      
     }
-    localStorage.removeItem('userInfo');
+    // localStorage.removeItem('userInfo');
   }, [userInfo]);
 
   return (
@@ -171,7 +170,8 @@ function SignupScreen() {
                     {message}
                   </Message>
                 )}
-                {message && (
+
+                {error && (
                   <Message variant="danger" onClose={handleClose}>
                     {error}
                   </Message>

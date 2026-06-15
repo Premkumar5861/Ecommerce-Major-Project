@@ -185,7 +185,7 @@ const { userInfo } = userLogin
           onChange={(e)=> setDescription(e.target.value)}
           ></Form.Control>
         </Form.Group>
-        <Button type="submit" variant="primary">Update</Button>
+        <Button type="submit" variant="primary" className="mt-3">Update</Button>
       </Form>
       )}
   </FormContainer>

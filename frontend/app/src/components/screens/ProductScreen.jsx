@@ -30,7 +30,7 @@ function ProductScreen({ product }) {
             </div>
           </Card.Text>
           <Card.Text as="h6">
-            <div className="my-3">Rs{product.price}</div>
+            <div className="my-3">₹{product.price}</div>
           </Card.Text>
           <Card.Text as="h6">
             <Link className="my-3 text-success" to={`/product/${product._id}`}
