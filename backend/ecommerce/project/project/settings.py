@@ -33,9 +33,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-=7l5+6p*&0jvu#tsg^*d+p3$zl*$&9!_e5&5anw(p98$n_d0wb'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["ecommerce-major-project.onrender.com",
+    "127.0.0.1",]
 
 
 # Application definition
@@ -213,5 +214,5 @@ MEDIA_ROOT = BASE_DIR /'static/images'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ALLOWED_ORIGINS = [
-    "https://your-frontend.vercel.app",
+    "https://ecommerce-major-project-vxj7.vercel.app",
 ]

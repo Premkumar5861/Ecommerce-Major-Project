@@ -1,6 +1,6 @@
 {
   "name": "app",
-  "proxy": "",
+  "proxy": "https://ecommerce-major-project.onrender.com/api/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
