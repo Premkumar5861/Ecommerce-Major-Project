@@ -1,7 +1,5 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
-
 import { thunk } from "redux-thunk";
-
 import { composeWithDevTools } from "@redux-devtools/extension";
 
 import {
@@ -9,9 +7,21 @@ import {
   productDetailsReducers,
   productListReducers,
   productUpdateReducers,
+  // productDeleteReducers import pannanum (if separate reducer irundha)
 } from "./reducers/productReducers";
-import { getDetailsReducers, userDeleteReducers, userListReducer, userLoginReducers, userSignupReducers, userUpdateProfileReducer, userUpdateReducers } from "./reducers/userReducers";
+
+import { 
+  getDetailsReducers, 
+  userDeleteReducers, 
+  userListReducer, 
+  userLoginReducers, 
+  userSignupReducers, 
+  userUpdateProfileReducer, 
+  userUpdateReducers 
+} from "./reducers/userReducers";
+
 import { cartReducer } from "./reducers/cartReducers";
+
 import {
   orderCreateReducer,
   orderDetailsReducer,
@@ -30,22 +40,21 @@ const reducer = combineReducers({
   orderDetails: orderDetailsReducer,
   orderDeliver: orderDeliverReducer,
 
-  //Admin
-  productCreate:productCreateReducers,
-  productUpdate:productUpdateReducers,
-  productDelete: productDeleteReducers,
-  orderList :orderListReducers,
-  // CRUD
+  // Admin
+  productCreate: productCreateReducers,
+  productUpdate: productUpdateReducers,
+  // productDelete: productDeleteReducers,   ← Comment panni or correct reducer use pannu
 
-  userList : userListReducer,
-  userUpdate : userUpdateReducers,
-  userDelete : userDeleteReducers,
-  userDetails : getDetailsReducers,
+  orderList: orderListReducers,
 
-  //
-  userUpdateProfile : userUpdateProfileReducer,
-  myOrderList : orderListMyReducers,
- 
+  // User CRUD
+  userList: userListReducer,
+  userUpdate: userUpdateReducers,
+  userDelete: userDeleteReducers,
+  userDetails: getDetailsReducers,
+
+  userUpdateProfile: userUpdateProfileReducer,
+  myOrderList: orderListMyReducers,
 });
 
 const userInfoFromStorage = localStorage.getItem("userInfo")
@@ -73,7 +82,7 @@ const middleware = [thunk];
 const store = createStore(
   reducer,
   initialState,
-  composeWithDevTools(applyMiddleware(...middleware)),
+  composeWithDevTools(applyMiddleware(...middleware))
 );
 
 export default store;
