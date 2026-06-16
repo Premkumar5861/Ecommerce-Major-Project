@@ -33,7 +33,7 @@ const reducer = combineReducers({
   //Admin
   productCreate:productCreateReducers,
   productUpdate:productUpdateReducers,
-  productDelete:productDetailsReducers,
+  productDelete: productDeleteReducers,
   orderList :orderListReducers,
   // CRUD
 
