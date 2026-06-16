@@ -200,9 +200,27 @@ EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = 'static/'
+# ============== MEDIA & STATIC FILES ==============
+STATIC_URL = '/static/'
 MEDIA_URL = '/images/'
+
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 MEDIA_ROOT = BASE_DIR / 'static/images'
+
+# Production Settings
+if DEBUG is False:   # Render la irukumbodhu
+    ALLOWED_HOSTS = ["ecommerce-major-project.onrender.com", "*"]
+    
+    # For Render
+    STATICFILES_STORAGE = 'whitenoise.middleware.WhiteNoiseMiddleware'
+
+# ============== CORS ==============
+CORS_ALLOWED_ORIGINS = [
+    "https://ecommerce-major-project-n2om.vercel.app",
+    "http://localhost:3000",
+]
+CORS_ALLOW_ALL_ORIGINS = True   # Temporary (development ku okay)
+CORS_ALLOW_CREDENTIALS = True
 
 STATICFILES_DIRS=[
     BASE_DIR / 'static'
