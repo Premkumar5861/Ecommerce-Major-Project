@@ -24,8 +24,7 @@ import {
 } from "../constants/userConstants";
 import axios from "axios";
 
-const API_URL = process.env.REACT_APP_API_URL || '';
-
+const API_URL = process.env.REACT_APP_API_URL || 'https://ecommerce-major-project.onrender.com';
 export const signup = (fname, lname, email, password) => async (dispatch) => {
   try {
     dispatch({ type: USER_SIGNUP_REQUEST });
