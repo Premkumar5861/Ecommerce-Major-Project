@@ -24,11 +24,11 @@ from datetime import timedelta
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # ============== STATIC & MEDIA FILES ==============
-STATIC_URL = '/static/'
-MEDIA_URL = '/images/'
+# STATIC_URL = '/static/'
+# MEDIA_URL = '/images/'
 
-STATIC_ROOT = BASE_DIR / 'staticfiles'
-MEDIA_ROOT = BASE_DIR / 'static/images'
+# STATIC_ROOT = BASE_DIR / 'staticfiles'
+# MEDIA_ROOT = BASE_DIR / 'static/images'
 
 STATICFILES_DIRS = [
     BASE_DIR / 'static'
@@ -36,7 +36,7 @@ STATICFILES_DIRS = [
 # Production Settings (Render)
 DEBUG = False
 
-ALLOWED_HOSTS = ["ecommerce-major-project.onrender.com", "*"]
+# ALLOWED_HOSTS = ["ecommerce-major-project.onrender.com", "*"]
 
 
 # Quick-start development settings - unsuitable for production
@@ -224,7 +224,7 @@ MEDIA_ROOT = BASE_DIR / 'static/images'
 
 # Production Settings
 if DEBUG is False:   # Render la irukumbodhu
-    ALLOWED_HOSTS = ["ecommerce-major-project.onrender.com", "*"]
+    # ALLOWED_HOSTS = ["ecommerce-major-project.onrender.com", "*"]
     
     # For Render
     STATICFILES_STORAGE = 'whitenoise.middleware.WhiteNoiseMiddleware'
@@ -241,7 +241,7 @@ STATICFILES_DIRS=[
     BASE_DIR / 'static'
 ]
 
-MEDIA_ROOT = BASE_DIR /'static/images'
+# MEDIA_ROOT = BASE_DIR /'static/images'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
