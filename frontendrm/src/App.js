@@ -18,7 +18,7 @@ import AdminOrderListScreen from "./components/screens/AdminOrderListScreen";
 import AdminUserListScreen from "./components/screens/AdminUserListScreen";
 import AdminUserEditScreen from "./components/screens/AdminUserEditScreen";
 import ProfileScreen from "./components/screens/ProfileScreen";
-import "./App.css";   // ← Idha mathu
+import "./App.css";  
 
 // alignPropType import ah remove pannu (unused)
 
