@@ -8,8 +8,7 @@ import {
   PRODUCT_DELETE_SUCCESS, PRODUCT_DELETE_FAIL  
 } from '../constants/productConstants';
 
-const API_URL = process.env.REACT_APP_API_URL || '';
-
+const API_URL = process.env.REACT_APP_API_URL || 'https://ecommerce-major-project.onrender.com';
 export const listProducts = () => async (dispatch) => {
   try {
     dispatch({ type: PRODUCT_LIST_REQUEST });
