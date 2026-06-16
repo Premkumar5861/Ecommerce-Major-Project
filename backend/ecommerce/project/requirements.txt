@@ -8,3 +8,5 @@ PyJWT
 six
 django-cors-headers
 whitenoise
+cloudinary
+django-cloudinary-storage
