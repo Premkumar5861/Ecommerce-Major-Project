@@ -37,7 +37,7 @@ export const signup = (fname, lname, email, password) => async (dispatch) => {
     };
 
     const { data } = await axios.post(
-      "/api/users/register/",
+      `${API_URL}/api/users/register/`,
       {
         fname: fname,
         lname: lname,
@@ -75,7 +75,7 @@ export const login = (username, password) => async (dispatch) => {
     };
 
     const { data } = await axios.post(
-      "/api/users/login/",
+      `${API_URL}/api/users/login/`,
       {
         username: username,
         password: password,
@@ -122,7 +122,7 @@ export const listUsers = () => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
-    const { data } = await axios.get(`/api/users/getallusers/`, config);
+    const { data } = await axios.get(`${API_URL}/api/users/getallusers/`, config);
     dispatch({
       type: USER_LIST_SUCCESS,
       payload: data,
@@ -152,7 +152,7 @@ export const deleteUsers = (id) => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
-    const { data } = await axios.delete(`/api/users/delete/${id}/`, config);
+    const { data } = await axios.delete(`${API_URL}/api/users/delete/${id}/`, config);
     dispatch({
       type: USER_DELETE_SUCCESS,
       payload: data,
@@ -184,7 +184,7 @@ export const updateUsers = (user) => async (dispatch, getState) => {
       },
     };
     const { data } = await axios.put(
-      `/api/users/update/${user._id}/`,
+      `${API_URL}/api/users/update/${user._id}/`,
       user,
       config,
     );
