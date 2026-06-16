@@ -20,6 +20,16 @@ import AdminUserEditScreen from "./components/screens/AdminUserEditScreen";
 import ProfileScreen from "./components/screens/ProfileScreen";
 import "./App.css";  
 
+
+const cors = require("cors");
+
+app.use(
+  cors({
+    origin: "https://ecommerce-major-project-n2om.vercel.app",
+    credentials: true,
+  })
+);
+
 // alignPropType import ah remove pannu (unused)
 
 export default function App() {
