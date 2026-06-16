@@ -36,7 +36,8 @@ SECRET_KEY = 'django-insecure-=7l5+6p*&0jvu#tsg^*d+p3$zl*$&9!_e5&5anw(p98$n_d0wb
 DEBUG = False
 
 ALLOWED_HOSTS = ["ecommerce-major-project.onrender.com",
-    "127.0.0.1",]
+    "127.0.0.1",
+    "localhost",]
 
 
 # Application definition
@@ -214,5 +215,6 @@ MEDIA_ROOT = BASE_DIR /'static/images'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ALLOWED_ORIGINS = [
-    "https://ecommerce-major-project-vxj7.vercel.app",
+    "https://ecommerce-major-project-n2om.vercel.app",
 ]
+CORS_ALLOW_ALL_ORIGINS = True

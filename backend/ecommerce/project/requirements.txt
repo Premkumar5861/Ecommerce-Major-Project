@@ -6,3 +6,4 @@ djangorestframework
 djangorestframework-simplejwt
 PyJWT
 six
+django-cors-headers

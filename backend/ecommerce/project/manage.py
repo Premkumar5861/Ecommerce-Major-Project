@@ -3,6 +3,29 @@
 import os
 import sys
 
+from flask import Flask
+from flask_cors import CORS
+
+app = Flask(__name__)
+
+# CORS
+CORS(app, 
+     origins=["https://ecommerce-major-project-n2om.vercel.app", 
+              "http://localhost:3000", 
+              "http://127.0.0.1:3000"],
+     supports_credentials=True)
+
+# Your routes
+@app.route('/api/products')
+def get_products():
+    # your code
+    pass
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000)
+
+
+
 
 def main():
     """Run administrative tasks."""
