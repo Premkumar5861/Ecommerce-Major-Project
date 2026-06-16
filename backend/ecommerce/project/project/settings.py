@@ -23,7 +23,20 @@ from datetime import timedelta
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# ============== STATIC & MEDIA FILES ==============
+STATIC_URL = '/static/'
+MEDIA_URL = '/images/'
 
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+MEDIA_ROOT = BASE_DIR / 'static/images'
+
+STATICFILES_DIRS = [
+    BASE_DIR / 'static'
+]
+# Production Settings (Render)
+DEBUG = False
+
+ALLOWED_HOSTS = ["ecommerce-major-project.onrender.com", "*"]
 
 
 # Quick-start development settings - unsuitable for production
@@ -48,6 +61,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
     'app.apps.AppConfig',
     "corsheaders",
@@ -66,6 +80,7 @@ REST_FRAMEWORK = {
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
 
     "corsheaders.middleware.CorsMiddleware",
@@ -235,5 +250,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ALLOWED_ORIGINS = [
     "https://ecommerce-major-project-n2om.vercel.app",
+    "http://localhost:3000",
 ]
-CORS_ALLOW_ALL_ORIGINS = True
