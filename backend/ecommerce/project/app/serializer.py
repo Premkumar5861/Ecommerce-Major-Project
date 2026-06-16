@@ -5,75 +5,83 @@ from rest_framework_simplejwt.tokens import RefreshToken
 
 
 class ProductSerializer(serializers.ModelSerializer):
+    image = serializers.SerializerMethodField()
+
     class Meta:
-        model=Product
-        fields='__all__'
+        model = Product
+        fields = '__all__'
+
+    def get_image(self, obj):
+        request = self.context.get('request')
+        if obj.image:
+            if request:
+                return request.build_absolute_uri(obj.image.url)
+            return f'https://ecommerce-major-project.onrender.com{obj.image.url}'
+        return None
 
 
 class UserSerializer(serializers.ModelSerializer):
-
     first_name = serializers.SerializerMethodField(read_only=True)
     last_name = serializers.SerializerMethodField(read_only=True)
     _id = serializers.SerializerMethodField(read_only=True)
     isAdmin = serializers.SerializerMethodField(read_only=True)
 
-
-
     class Meta:
         model = User
-        fields = ['id', '_id', 'username', 'email', 'first_name','last_name', 'isAdmin']
+        fields = ['id', '_id', 'username', 'email', 'first_name', 'last_name', 'isAdmin']
 
     def get_first_name(self, obj):
-        return  obj.first_name
-    
-    def get_last_name(self,obj):
-        return obj.last_name
+        return obj.first_name
 
+    def get_last_name(self, obj):
+        return obj.last_name
 
     def get__id(self, obj):
         return obj.id
-    
-    def get_isAdmin(self , obj):
+
+    def get_isAdmin(self, obj):
         return obj.is_staff
-    
+
 
 class UserSerializerwithToken(UserSerializer):
-
     token = serializers.SerializerMethodField(read_only=True)
 
     class Meta:
         model = User
-        fields = ['id', '_id', 'username', 'email', 'first_name','last_name', 'isAdmin', 'token']
+        fields = ['id', '_id', 'username', 'email', 'first_name', 'last_name', 'isAdmin', 'token']
 
     def get_token(self, obj):
         token = RefreshToken.for_user(obj)
         return str(token.access_token)
-    
+
+
 class OrderItemsSerializer(serializers.ModelSerializer):
     class Meta:
-        model  = OrderItem
+        model = OrderItem
         fields = '__all__'
+
 
 class ShippingAddressSerializer(serializers.ModelSerializer):
     class Meta:
         model = ShippingAddress
         fields = '__all__'
 
+
 class OrderSerializer(serializers.ModelSerializer):
     orderItems = serializers.SerializerMethodField(read_only=True)
     shippingAddress = serializers.SerializerMethodField(read_only=True)
     user = serializers.SerializerMethodField(read_only=True)
+
     class Meta:
         model = Order
         fields = '__all__'
 
-    
-    def get_orderItems(self,obj):
+    def get_orderItems(self, obj):
         items = obj.orderitem_set.all()
         serializers = OrderItemsSerializer(items, many=True)
         return serializers.data
-    
-    def get_shippingAddress(self,obj):
+
+    def get_shippingAddress(self, obj):
         try:
             shipping = ShippingAddress.objects.filter(order=obj).first()
             if shipping:
@@ -82,13 +90,9 @@ class OrderSerializer(serializers.ModelSerializer):
                 address = False
         except:
             address = False
-
         return address
-    
-    def get_user(self,obj):
+
+    def get_user(self, obj):
         user = obj.user
-        serializers = UserSerializer(user,many=False)
+        serializers = UserSerializer(user, many=False)
         return serializers.data
-
-
-
