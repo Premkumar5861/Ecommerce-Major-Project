@@ -9,7 +9,6 @@ https://docs.djangoproject.com/en/5.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
-import os
 
 #---for email check
 import django 
@@ -24,20 +23,7 @@ from datetime import timedelta
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# ============== STATIC & MEDIA FILES ==============
-# STATIC_URL = '/static/'
-# MEDIA_URL = '/images/'
 
-# STATIC_ROOT = BASE_DIR / 'staticfiles'
-# MEDIA_ROOT = BASE_DIR / 'static/images'
-
-STATICFILES_DIRS = [
-    BASE_DIR / 'static'
-]
-# Production Settings (Render)
-DEBUG = False
-
-# ALLOWED_HOSTS = ["ecommerce-major-project.onrender.com", "*"]
 
 
 # Quick-start development settings - unsuitable for production
@@ -62,10 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
-    'cloudinary_storage',
-    'cloudinary',
     'app.apps.AppConfig',
     "corsheaders",
     'rest_framework',
@@ -83,7 +66,6 @@ REST_FRAMEWORK = {
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
 
     "corsheaders.middleware.CorsMiddleware",
@@ -218,33 +200,15 @@ EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-# ============== MEDIA & STATIC FILES ==============
-STATIC_URL = '/static/'
+STATIC_URL = 'static/'
 MEDIA_URL = '/images/'
-
-STATIC_ROOT = BASE_DIR / 'staticfiles'
 MEDIA_ROOT = BASE_DIR / 'static/images'
-
-# Production Settings
-if DEBUG is False:   # Render la irukumbodhu
-    # ALLOWED_HOSTS = ["ecommerce-major-project.onrender.com", "*"]
-    
-    # For Render
-    STATICFILES_STORAGE = 'whitenoise.middleware.WhiteNoiseMiddleware'
-
-# ============== CORS ==============
-CORS_ALLOWED_ORIGINS = [
-    "https://ecommerce-major-project-n2om.vercel.app",
-    "http://localhost:3000",
-]
-CORS_ALLOW_ALL_ORIGINS = True   # Temporary (development ku okay)
-CORS_ALLOW_CREDENTIALS = True
 
 STATICFILES_DIRS=[
     BASE_DIR / 'static'
 ]
 
-# MEDIA_ROOT = BASE_DIR /'static/images'
+MEDIA_ROOT = BASE_DIR /'static/images'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
@@ -253,18 +217,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ALLOWED_ORIGINS = [
     "https://ecommerce-major-project-n2om.vercel.app",
-    "http://localhost:3000",
 ]
-
-# ========== CLOUDINARY CONFIG ==========
-import cloudinary
-import cloudinary.uploader
-import cloudinary.api
-
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': os.environ.get('CLOUDINARY_CLOUD_NAME'),
-    'API_KEY': os.environ.get('CLOUDINARY_API_KEY'),
-    'API_SECRET': os.environ.get('CLOUDINARY_API_SECRET'),
-}
-
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+CORS_ALLOW_ALL_ORIGINS = True
