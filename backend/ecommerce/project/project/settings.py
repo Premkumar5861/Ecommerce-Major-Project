@@ -15,6 +15,11 @@ import django
 from django.utils.encoding import force_str
 django.utils.encoding.force_text = force_str
 
+import cloudinary
+
+import os
+
+
 #------
 
 from pathlib import Path
@@ -48,13 +53,26 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'cloudinary_storage',
     'django.contrib.staticfiles',
+    'cloudinary', 
     'app.apps.AppConfig',
     "corsheaders",
     'rest_framework',
     'rest_framework_simplejwt',
 ]
-    
+
+
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': os.environ.get('CLOUDINARY_CLOUD_NAME'),
+    'API_KEY': os.environ.get('CLOUDINARY_API_KEY'),
+    'API_SECRET': os.environ.get('CLOUDINARY_API_SECRET'),
+}
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+MEDIA_URL = '/media/'
+
 
 
 REST_FRAMEWORK = {
@@ -201,7 +219,7 @@ EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = 'static/'
-MEDIA_URL = '/images/'
+# MEDIA_URL = '/images/'
 MEDIA_ROOT = BASE_DIR / 'static/images'
 
 STATICFILES_DIRS=[

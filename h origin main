@@ -1,0 +1,12 @@
+* [33mb6f97341[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m fix: add productDeleteReducers to store, fix white screen and delete tha old frontend
+[31m|[m * [33m6ff0bd08[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m Delete frontend directory
+[31m|[m[31m/[m  
+* [33m6ce8a331[m fix: cloudinary image upload
+*   [33m6ae08e8c[m Merge branch 'main' of https://github.com/Premkumar5861/Ecommerce-Major-Project
+[33m|[m[34m\[m  
+[33m|[m * [33mf6554b17[m Enhance ProductSerializer with request context
+[33m|[m * [33m96b76e8c[m Fix formatting issue in get_user method
+[33m|[m * [33m8612ea93[m Update settings.py
+[33m|[m * [33mbc8bd500[m Add Cloudinary settings for media storage
+[33m|[m * [33md3ff3463[m Update requirements.txt
+[33m|[m * [33mc852d38f[m Set default API_URL for order actions
