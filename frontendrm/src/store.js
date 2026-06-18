@@ -8,6 +8,7 @@ import {
   productDetailsReducers,
   productListReducers,
   productUpdateReducers,
+  productDeleteReducers,  
   // productDeleteReducers import pannanum (if separate reducer irundha)
 } from "./reducers/productReducers";
 
@@ -44,7 +45,7 @@ const reducer = combineReducers({
   // Admin
   productCreate: productCreateReducers,
   productUpdate: productUpdateReducers,
-  // productDelete: productDeleteReducers,   ← Comment panni or correct reducer use pannu
+  productDelete: productDeleteReducers, 
 
   orderList: orderListReducers,
 
@@ -57,6 +58,7 @@ const reducer = combineReducers({
   userUpdateProfile: userUpdateProfileReducer,
   myOrderList: orderListMyReducers,
 });
+
 
 const userInfoFromStorage = localStorage.getItem("userInfo")
   ? JSON.parse(localStorage.getItem("userInfo"))
