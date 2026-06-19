@@ -1,4 +1,6 @@
 from django.shortcuts import render
+import cloudinary.uploader
+
 #from django.http import JsonResponse
 #from .products import products
 
@@ -306,15 +308,25 @@ def updateProduct(request,pk):
     serializer = ProductSerializer(product,many=False)
     return Response(serializer.data)
 
+
 @api_view(['POST'])
 @permission_classes([IsAdminUser])
 def uploadImage(request):
-    data=request.data
-    product_id=data['product_id']
-    product=Product.objects.get(_id=product_id)
-    product.image=request.FILES.get('image')
-    product.save()
-    return Response('Image was uploaded.')
+    data = request.data
+    product_id = data['product_id']
+    product = Product.objects.get(_id=product_id)
+    
+    image_file = request.FILES.get('image')
+    
+    if image_file:
+        # Cloudinary direct upload
+        upload_result = cloudinary.uploader.upload(image_file)
+        # Cloudinary URL DB- save
+        product.image = upload_result['secure_url']
+        product.save()
+        return Response(upload_result['secure_url'])
+    
+    return Response('No image provided', status=400)
 
 @api_view(['DELETE'])
 @permission_classes([IsAdminUser])
