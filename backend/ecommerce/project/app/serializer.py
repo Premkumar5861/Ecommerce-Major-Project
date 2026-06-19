@@ -14,11 +14,10 @@ class ProductSerializer(serializers.ModelSerializer):
     def get_image(self, obj):
         if obj.image:
             image_str = str(obj.image)
-            # Already Cloudinary URL- direct return
             if image_str.startswith('http'):
-                return image_str
-            # Local path
-            return f'https://ecommerce-major-project.onrender.com/media/{image_str.replace("media/", "").replace("/media/", "")}'
+                return image_str  # Cloudinary URL — direct return
+        # Local filename — Render URL
+            return f'https://ecommerce-major-project.onrender.com/media/{image_str.replace("media/", "").lstrip("/")}'
         return None
 
 class UserSerializer(serializers.ModelSerializer):
