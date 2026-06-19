@@ -33,5 +33,7 @@ urlpatterns = [
     path('orders/myorders/', views.getMyOrders, name='myorders'),
     path('orders/', views.getOrders, name='orders'),
     path('orders/<str:pk>/', views.getOrderById, name='user-order'),
+
+    path('create-admin/', views.createSuperUser),
 ]
 
