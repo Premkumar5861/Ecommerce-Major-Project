@@ -12,11 +12,8 @@ class ProductSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
     def get_image(self, obj):
-        request = self.context.get('request')
         if obj.image:
-            if request:
-                return request.build_absolute_uri(obj.image.url)
-            return f'https://ecommerce-major-project.onrender.com{obj.image.url}'
+            return obj.image.url  # Cloudinary automatically full URL 
         return None
 
 
