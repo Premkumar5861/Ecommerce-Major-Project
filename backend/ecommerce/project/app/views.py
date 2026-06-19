@@ -220,8 +220,7 @@ def addOrderItems(request):
             name=product.name,
             qty=i['qty'],
             price=i['price'],
-            image = product.image.url if product.image else '',
-            
+            image = product.image.url if product.image else '',            
         )
         # 4. Update Stock
         product.countInStock -= item.qty
