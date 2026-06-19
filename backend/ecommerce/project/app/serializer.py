@@ -13,9 +13,13 @@ class ProductSerializer(serializers.ModelSerializer):
 
     def get_image(self, obj):
         if obj.image:
-            return obj.image.url  # Cloudinary automatically full URL 
+            image_str = str(obj.image)
+            # Already Cloudinary URL- direct return
+            if image_str.startswith('http'):
+                return image_str
+            # Local path
+            return f'https://ecommerce-major-project.onrender.com/media/{image_str.replace("media/", "").replace("/media/", "")}'
         return None
-
 
 class UserSerializer(serializers.ModelSerializer):
     first_name = serializers.SerializerMethodField(read_only=True)
