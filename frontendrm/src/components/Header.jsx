@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Navbar, Container, Nav, NavDropdown } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,13 +8,16 @@ function Header() {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
   const dispatch = useDispatch();
+  const [showDropdown, setShowDropdown] = useState(false);
 
   const logoutHandler = () => {
     dispatch(logout());
+    setShowDropdown(false);
   };
+
   return (
     <>
-      <Navbar bg="dark" variant="dark" collapseOnSelect>
+      <Navbar bg="dark" variant="dark" collapseOnSelect expand="lg">
         <Container>
           <LinkContainer to="/">
             <Navbar.Brand>Ecomerce Store</Navbar.Brand>
@@ -26,10 +29,7 @@ function Header() {
                 <Nav.Link>Home</Nav.Link>
               </LinkContainer>
 
-              <LinkContainer
-                to="/cart
-"
-              >
+              <LinkContainer to="/cart">
                 <Nav.Link>Cart</Nav.Link>
               </LinkContainer>
 
@@ -37,33 +37,22 @@ function Header() {
                 <Nav.Link>Checkout</Nav.Link>
               </LinkContainer>
 
-              
-
               {userInfo ? (
-                <li className="nav-item dropdown">
-                  <LinkContainer to="/">
-                    <Nav.Link
-                      className="may-link dropdown-toggle"
-                      data-bs-toggle="dropdown"
-                      role="button"
-                      aria-haspopup="true"
-                      aria-expanded="false"
-                    >
-                      Welcome {userInfo.first_name}
-                    </Nav.Link>
-                  </LinkContainer>
-                  <div className="dropdown-menu">
-                    <LinkContainer to={'/profile'}>
-                    <NavDropdown.Item>Profile</NavDropdown.Item>
-                    </LinkContainer>
-                    <NavDropdown.Item
-                      
-                      onClick={logoutHandler}
-                    >
-                      Logout
+                <NavDropdown
+                  title={`Welcome ${userInfo.first_name}`}
+                  id="username-dropdown"
+                  show={showDropdown}
+                  onToggle={(val) => setShowDropdown(val)}
+                >
+                  <LinkContainer to="/profile">
+                    <NavDropdown.Item onClick={() => setShowDropdown(false)}>
+                      Profile
                     </NavDropdown.Item>
-                  </div>
-                </li>
+                  </LinkContainer>
+                  <NavDropdown.Item onClick={logoutHandler}>
+                    Logout
+                  </NavDropdown.Item>
+                </NavDropdown>
               ) : (
                 <>
                   <LinkContainer to="/signup">
@@ -74,21 +63,20 @@ function Header() {
                   </LinkContainer>
                 </>
               )}
-{userInfo && userInfo.isAdmin && (
-  <NavDropdown title='Admin' id="adminmenue">
-    <LinkContainer to='/admin/userlist'>
-    <NavDropdown.Item>Users</NavDropdown.Item>
-    </LinkContainer>
-    <LinkContainer to='/admin/productlist'>
-    <NavDropdown.Item>Products</NavDropdown.Item>
-    </LinkContainer>
-    <LinkContainer to='/admin/orderlist'>
-    <NavDropdown.Item>orderlist
-      </NavDropdown.Item>
-      </LinkContainer>
-  </NavDropdown>
-)}
 
+              {userInfo && userInfo.isAdmin && (
+                <NavDropdown title="Admin" id="admin-menu">
+                  <LinkContainer to="/admin/userlist">
+                    <NavDropdown.Item>Users</NavDropdown.Item>
+                  </LinkContainer>
+                  <LinkContainer to="/admin/productlist">
+                    <NavDropdown.Item>Products</NavDropdown.Item>
+                  </LinkContainer>
+                  <LinkContainer to="/admin/orderlist">
+                    <NavDropdown.Item>Orderlist</NavDropdown.Item>
+                  </LinkContainer>
+                </NavDropdown>
+              )}
             </Nav>
           </Navbar.Collapse>
         </Container>
