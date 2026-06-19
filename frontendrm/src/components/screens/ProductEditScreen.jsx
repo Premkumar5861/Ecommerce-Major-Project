@@ -58,6 +58,8 @@ const { userInfo } = userLogin
       }
     
   },[dispatch,product,id])
+  const API_URL = process.env.REACT_APP_API_URL || 'https://ecommerce-major-project.onrender.com'
+
 
   const uploadFilehandler = async (e)=>{
     const file = e.target.files[0]
@@ -74,7 +76,8 @@ const { userInfo } = userLogin
           Authorization: `Bearer ${userInfo.token}`
         }
       }
-        const {data} = await axios.post('/api/products/upload/', formData,config)
+
+        const {data} = await axios.post(`${API_URL}/api/products/upload/`, formData, config)
 
         setImage(data)
         setUploading(false)
