@@ -237,6 +237,6 @@ MEDIA_ROOT = BASE_DIR /'static/images'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ALLOWED_ORIGINS = [
-    "https://ecommerce-major-project-n2om.vercel.app",
+    "https://ecommerce-store-pkmr.vercel.app",
 ]
 CORS_ALLOW_ALL_ORIGINS = True
