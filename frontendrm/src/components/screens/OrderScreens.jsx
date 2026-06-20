@@ -53,7 +53,8 @@ function OrderScreens() {
             <ListGroup.Item>
               <h2>Shipping</h2>
               <p>
-                <strong>Name: </strong> {order.user.name}
+                <strong>Name: </strong> {order.user.first_name} {order.user.last_name}
+
               </p>
               <p>
                 <strong>Email: </strong>{" "}
@@ -100,14 +101,15 @@ function OrderScreens() {
               ) : (
                 <ListGroup variant="flush">
                   {order.orderItems.map((item, index) => (
-                    
                     <ListGroup.Item key={index}>
-                        
                       <Row>
                         <Col md={1}>
                           <Image
-                                src={item.image}
-
+                            src={
+                              item.image && item.image.startsWith("http")
+                                ? item.image
+                                : `https://ecommerce-major-project.onrender.com/media/${item.image}`
+                            }
                             alt={item.name}
                             fluid
                             rounded
