@@ -31,7 +31,7 @@ function Home() {
         <Row>
           {products?.map((product) => (
             <Col key={product._id} sm={12} md={6} lg={4} xl={4} className="d-flex-colum">
-              <ProductScreen product={product} />
+              <ProductScreen product={product}  className="product-link"/>
               {/* <h3>{product.name}</h3> */}
             </Col>
           ))}

@@ -15,7 +15,7 @@ function ProductScreen({ product }) {
     <>
       <Card className="my-3 p-3 rounded border border-dark shadow">
         <div className="product-card-image-wrap">
-          <Link to={`/product/${product._id}`}>
+          <Link to={`/product/${product._id}`} >
             <Card.Img
               src={getImageUrl(product.image)}
               className="product-card-img"
@@ -25,7 +25,7 @@ function ProductScreen({ product }) {
           </Link>
         </div>
         <Card.Body className="d-flex flex-column product-card-body">
-          <Link to={`/product/${product._id}`}>
+          <Link to={`/product/${product._id}`}className="product-link">
             <Card.Title>
               <strong>{product.name}</strong>
             </Card.Title>

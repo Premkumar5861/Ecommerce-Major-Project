@@ -53,10 +53,12 @@ function ProductDetails({ params }) {
               <Image
                 src={product.image}
                 alt={product.name}
+                
                 style={{
                   maxHeight: "500px",
                   width: "100%",
                   objectFit: "contain",
+                  
                 }}
               ></Image>
             </Col>

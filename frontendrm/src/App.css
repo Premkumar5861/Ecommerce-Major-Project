@@ -52,3 +52,13 @@
   flex:1;
   
 }
+
+.product-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.product-link:hover {
+  text-decoration: none;
+  color: inherit;
+}
