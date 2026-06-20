@@ -22,13 +22,26 @@ function AdminUserListScreen() {
   const [message, setMessage] = useState("");
   const handleClose = () => setMessage(false);
 
+  // useEffect(() => {
+  //   if (userInfo && userInfo.isAdmin) {
+  //     dispatch(listUsers());
+  //   } else {
+  //     navigate("/login");
+  //   }
+  // }, [dispatch, userInfo, successDelete]);
+
+
   useEffect(() => {
-    if (userInfo && userInfo.isAdmin) {
-      dispatch(listUsers());
-    } else {
-      navigate("/login");
-    }
-  }, [dispatch, userInfo, successDelete]);
+  if (!userInfo) {
+    navigate("/login");
+    return;
+  }
+  if (!userInfo.isAdmin) {
+    navigate("/");
+    return;
+  }
+  dispatch(listUsers());
+}, [dispatch, userInfo, successDelete]);
 
   const deleteHandler = (id) => {
     if (window.confirm("Are you sure you want to delete this user?")) {

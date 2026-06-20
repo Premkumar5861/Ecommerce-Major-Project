@@ -25,14 +25,29 @@ function AdminOrderListScreen() {
     const [message,setMessage] = useState("")
     const handleClose=()=>setMessage(false)
 
-    useEffect(()=>{
-        if(userInfo && userInfo.isAdmin){
-            dispatch(listOrders())
-        }
-        else{
-            navigate('/login')
-        }
-    },[dispatch,userInfo])
+    // useEffect(()=>{
+    //     if(userInfo && userInfo.isAdmin){
+    //         dispatch(listOrders())
+    //     }
+    //     else{
+    //         navigate('/login')
+    //     }
+    // },[dispatch,userInfo])
+
+
+    useEffect(() => {
+  if (!userInfo) {
+    navigate('/login');
+    return;
+  }
+  if (!userInfo.isAdmin) {
+    navigate('/');
+    return;
+  }
+  dispatch(listOrders());
+}, [dispatch, userInfo]);
+
+
   return (
     <>
     <div>

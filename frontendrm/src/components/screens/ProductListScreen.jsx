@@ -37,17 +37,33 @@ function ProductListScreen() {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
-  useEffect(() => {
-    dispatch({ type: PRODUCT_CREATE_RESET });
-    if (!userInfo || !userInfo.isAdmin) {
-      navigate("/login");
-    } else {
-      dispatch(listProducts());
-    }
-    if (successCreate && createdProduct) {
-      navigate(`/admin/product/${createdProduct._id}/edit`);
-    }
-  }, [dispatch, userInfo, successCreate, createdProduct,successDelete]);
+  // useEffect(() => {
+  //   dispatch({ type: PRODUCT_CREATE_RESET });
+  //   if (!userInfo || !userInfo.isAdmin) {
+  //     navigate("/login");
+  //   } else {
+  //     dispatch(listProducts());
+  //   }
+  //   if (successCreate && createdProduct) {
+  //     navigate(`/admin/product/${createdProduct._id}/edit`);
+  //   }
+  // }, [dispatch, userInfo, successCreate, createdProduct,successDelete]);
+
+useEffect(() => {
+  dispatch({ type: PRODUCT_CREATE_RESET });
+  if (!userInfo) {
+    navigate("/login");
+    return;  // ← இந்த line add பண்ணு
+  }
+  if (!userInfo.isAdmin) {
+    navigate("/");
+    return;
+  }
+  dispatch(listProducts());
+  if (successCreate && createdProduct) {
+    navigate(`/admin/product/${createdProduct._id}/edit`);
+  }
+}, [dispatch, userInfo, successCreate, createdProduct, successDelete]);
 
   const createProductHandler = () => {
     dispatch(createProduct());
