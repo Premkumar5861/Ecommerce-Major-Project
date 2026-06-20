@@ -34,6 +34,6 @@ urlpatterns = [
     path('orders/', views.getOrders, name='orders'),
     path('orders/<str:pk>/', views.getOrderById, name='user-order'),
 
-    path('create-admin/', views.createSuperUser),
+    # path('create-admin/', views.createSuperUser),
 ]
 

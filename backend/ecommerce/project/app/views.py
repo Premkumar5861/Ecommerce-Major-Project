@@ -401,8 +401,8 @@ def updateUser(request,pk):
     serializer = UserSerializer(user,many=False)
     return Response(serializer.data)
 
-@api_view(['GET'])
-def createSuperUser(request):
+# @api_view(['GET'])
+# def createSuperUser(request):
     try:
         user = User.objects.create_superuser(
             username='admin@gmail.com',
