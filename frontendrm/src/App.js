@@ -18,44 +18,37 @@ import AdminOrderListScreen from "./components/screens/AdminOrderListScreen";
 import AdminUserListScreen from "./components/screens/AdminUserListScreen";
 import AdminUserEditScreen from "./components/screens/AdminUserEditScreen";
 import ProfileScreen from "./components/screens/ProfileScreen";
-import "./App.css";  
-
-// alignPropType import ah remove pannu (unused)
+import { PrivateRoute, AdminRoute } from "./components/PrivateRoute";
+import "./App.css";
 
 export default function App() {
   return (
-    <>
-      <BrowserRouter>
-        <div style={{
-          minHeight: "100vh",
-          display: "flex",
-          flexDirection: "column",
-        }}>
-          <Header />
-          <main style={{ flex: 1 }}>
-            <Container>
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/product/:id" element={<ProductDetails />} />
-                <Route path="/signup" element={<SignupScreen />} />
-                <Route path="/login" element={<LoginScreen />} />
-                <Route path="/cart/:id?" element={<CartScreens />} />
-                <Route path="/checkout" element={<ShippingScreen />} />
-                <Route path="/placeorder" element={<PlaceOrderScreens />} />
-                <Route path="/payment" element={<PaymentScreen />} />
-                <Route path="/order/:id" element={<OrderScreens />} />
-                <Route path="/admin/productlist" element={<ProductListScreen />} />
-                <Route path="/admin/product/:id/edit" element={<ProductEditScreen />} />
-                <Route path="/admin/orderlist" element={<AdminOrderListScreen />} />
-                <Route path="/admin/userlist" element={<AdminUserListScreen />} />
-                <Route path="/admin/user/:id/edit" element={<AdminUserEditScreen />} />
-                <Route path="/profile" element={<ProfileScreen />} />
-              </Routes>
-            </Container>
-          </main>
-          <Footer />
-        </div>
-      </BrowserRouter>
-    </>
+    <BrowserRouter>
+      <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}>
+        <Header />
+        <main style={{ flex: 1 }}>
+          <Container>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/product/:id" element={<ProductDetails />} />
+              <Route path="/signup" element={<SignupScreen />} />
+              <Route path="/login" element={<LoginScreen />} />
+              <Route path="/cart/:id?" element={<CartScreens />} />
+              <Route path="/checkout" element={<ShippingScreen />} />
+              <Route path="/placeorder" element={<PlaceOrderScreens />} />
+              <Route path="/payment" element={<PaymentScreen />} />
+              <Route path="/order/:id" element={<PrivateRoute><OrderScreens /></PrivateRoute>} />
+              <Route path="/profile" element={<PrivateRoute><ProfileScreen /></PrivateRoute>} />
+              <Route path="/admin/productlist" element={<AdminRoute><ProductListScreen /></AdminRoute>} />
+              <Route path="/admin/product/:id/edit" element={<AdminRoute><ProductEditScreen /></AdminRoute>} />
+              <Route path="/admin/orderlist" element={<AdminRoute><AdminOrderListScreen /></AdminRoute>} />
+              <Route path="/admin/userlist" element={<AdminRoute><AdminUserListScreen /></AdminRoute>} />
+              <Route path="/admin/user/:id/edit" element={<AdminRoute><AdminUserEditScreen /></AdminRoute>} />
+            </Routes>
+          </Container>
+        </main>
+        <Footer />
+      </div>
+    </BrowserRouter>
   );
 }

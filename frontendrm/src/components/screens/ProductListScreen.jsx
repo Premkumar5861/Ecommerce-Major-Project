@@ -53,7 +53,7 @@ useEffect(() => {
   dispatch({ type: PRODUCT_CREATE_RESET });
   if (!userInfo) {
     navigate("/login");
-    return;  // ← இந்த line add பண்ணு
+    return;  
   }
   if (!userInfo.isAdmin) {
     navigate("/");
